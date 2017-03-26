@@ -1,0 +1,6 @@
+{
+  "plugins": [
+    "cordova-plugin-device",
+    "cordova-plugin-app-version"
+  ]
+}
