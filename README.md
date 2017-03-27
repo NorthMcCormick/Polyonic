@@ -15,16 +15,10 @@ An Electron Ionic application shell for creating Web Apps, Progressive Mobile We
 
 This project combines the <a href="http://electron.atom.io/">Electron Framework</a> with <a href="http://ionicframework.com/docs/v2/">Ionic 2</a> and provides a starter for building out an app that can run on either the desktop (macOS, Windows and Linux), a browser or mobile devices (iOS, Android and Windows Phone).  You can use this application to build and run on one or even all of these platforms.
 
-# Motivation
+# How Does It Work?
 
-When working in small teams creating web and mobile applications, it is difficult and time consuming for new team members to pick up the different technologies for each platform. I have also been asked a few questions that motivated me to try Polyonic out: 
-- Is there was way to run this mobile app on the desktop?
-- Can we cache more in the browser for offline working?
-- Can we have one Universal app that can run on the desktop, mobile, web and Office 365?
-
-These questions made me think about the limitations of the browser for off-line editing and caching and was there a way to create a package that can be used to flesh out any app we require, whilst reducing the overhead of having to learn numerous libraries and frameworks for each platform.
-
-And that is why I decided to try combining Electron and Ionic. Is it wise to have a universal app using a mobile framework? Probably not, but it is fun :wink:
+<img src="https://github.com/northmccormick/polyonic/blob/master/.github/res/Polyonic.png" width="70%" height="auto" style="display: inline-block;"/>
+<img src="https://github.com/northmccormick/polyonic/blob/master/.github/res/Ionic.png" width="30%" height="auto" style="display: inline-block;"/>
 
 # Electrolyte
 
