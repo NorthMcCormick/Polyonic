@@ -17,6 +17,12 @@ This project combines the <a href="http://electron.atom.io/">Electron Framework<
 
 # How Does It Work?
 
+Polyonic only makes *minimal* changes to your Ionic project. We add a couple of files (they are ignored on mobile platforms, so there's no extra bulk), update a setting, and ask you to put your ionic project **inside** of the polyonic shell.
+
+Your development for mobile stays the same, and we provide a few extra commands and a way to kickstart the desktop version of your app!
+
+Here's what it looks like side by side with your app in Cordova:
+
 <img src="https://github.com/northmccormick/polyonic/blob/master/.github/res/Polyonic.png" width="70%" height="auto" style="display: inline-block;"/>
 <img src="https://github.com/northmccormick/polyonic/blob/master/.github/res/Ionic.png" width="30%" height="auto" style="display: inline-block;"/>
 
