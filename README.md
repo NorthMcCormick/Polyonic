@@ -1,4 +1,4 @@
-# Polyonic
+# Polyonic v0.0.4
 
 ## The ultimate "Universal App"
 
