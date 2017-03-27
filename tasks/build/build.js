@@ -22,7 +22,6 @@ const binDir = projectDir.cwd('./test-darwin-x64');
 
 let paths = {
   copyFromAppDir: [
-    './node_modules/**',
     './www/**',
     './routes/**',
     './**/*.+(jpg|png|svg)'
@@ -53,6 +52,7 @@ gulp.task('copy', function (done) {
 })
 
 gulp.task('finalize', function (done) {
+  var rootPackage = projectDir.read('package.json', 'json');
   var configXml = srcDir.read('./config.xml', 'utf8');
   let manifest = srcDir.read('package.json', 'json');
 
@@ -73,6 +73,8 @@ gulp.task('finalize', function (done) {
         break
     }*/
 
+    manifest.dependencies = rootPackage.dependencies; // Electron ONLY needs the deps for itself, the ionic app should be fully built by now
+    manifest.devDependencies = {}; // Remove these so they don't get installed
     manifest.productName = appName;
 
     manifest.env = projectDir.read('config/env_' + utils.getEnvName() + '.json', 'json');
@@ -85,30 +87,11 @@ gulp.task('finalize', function (done) {
 });
 
 gulp.task('installDeps', function(done) {
-  var packageString = projectDir.read('package.json');
-
-  var packageJSON = JSON.parse(packageString);
-  var installString = 'cd build && npm install ';
-
-  if(packageJSON.dependencies !== undefined) {
-    Object.keys(packageJSON.dependencies).forEach(function(dep) {
-      let version = packageJSON.dependencies[dep];
-
-      installString += dep + '@' + version + ' ';
-    })
-
-    installString += '--save';
-
-    console.log('Running: ' + installString);
-
-    exec(installString, function(error, stdout, stderr) {
-      console.log(stdout);
-      console.log(stderr);
-      done(error);
-    })
-  }else{
-    done('Error: Package.json is missing dependencies!');
-  }
+  exec('cd build && npm install', function(error, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    done(error);
+  });
 })
 
 gulp.task('watch', function () {
