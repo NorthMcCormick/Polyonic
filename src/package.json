@@ -1,7 +1,8 @@
 {
-  "name": "ionic-hello-world",
+  "name": "com.ionicframework.app723569",
   "author": "Ionic Framework",
   "homepage": "http://ionicframework.com/",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",

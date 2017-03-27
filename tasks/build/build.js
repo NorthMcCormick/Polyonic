@@ -61,7 +61,8 @@ gulp.task('finalize', function (done) {
     
     // Add "dev" or "test" suffix to name, so Electron will write all data
     // like cookies and localStorage in separate places for each environment.
-    switch (utils.getEnvName()) {
+    // TODO
+    /*switch (utils.getEnvName()) {
       case 'development':
         manifest.name += '-dev';
         manifest.productName = appName + ' Dev';
@@ -70,7 +71,9 @@ gulp.task('finalize', function (done) {
         manifest.name += '-test';
         manifest.productName = appName + ' Test';
         break
-    }
+    }*/
+
+    manifest.productName = appName;
 
     manifest.env = projectDir.read('config/env_' + utils.getEnvName() + '.json', 'json');
 
@@ -118,21 +121,22 @@ gulp.task('watch', function () {
 })
 
 gulp.task('build-electron', function(done) {
-  /*exec('electron-packager build test --overwrite', function (error, stdout, stderr) {
-    console.log(stdout);
-    console.log(stderr);
-    done(error);
-  });*/
+  var configXml = srcDir.read('./config.xml', 'utf8');
 
-  packager({
-    dir: 'build',
-    asar: true,
-    // todo: icon
-    overwrite: true,
-    out: 'output'
-  }, function (err, appPaths) {
-    done(err);
-  })
+  parseString(configXml, function (err, result) {
+    var appVersion = result.widget.$.version;
+
+    packager({
+      dir: 'build',
+      asar: true,
+      // todo: icon
+      overwrite: true,
+      out: 'output',
+      appVersion: appVersion
+    }, function (err, appPaths) {
+      done(err);
+    })
+  });
 });
 
 gulp.task('build-ionic', function(done) {
