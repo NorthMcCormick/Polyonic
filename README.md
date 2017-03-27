@@ -23,8 +23,8 @@ Your development for mobile stays the same, and we provide a few extra commands 
 
 Here's what it looks like side by side with your app in Cordova:
 
-<img src="https://github.com/northmccormick/polyonic/blob/master/.github/res/Polyonic.png" width="70%" height="auto" style="display: inline-block;"/>
-<img src="https://github.com/northmccormick/polyonic/blob/master/.github/res/Ionic.png" width="30%" height="auto" style="display: inline-block;"/>
+<img src="https://github.com/northmccormick/polyonic/blob/master/.github/res/Polyonic.png" width="69%" height="auto" style="display: inline-block;"/>
+<img src="https://github.com/northmccormick/polyonic/blob/master/.github/res/Ionic.png" width="29%" height="auto" style="display: inline-block;"/>
 
 # Electrolyte
 
