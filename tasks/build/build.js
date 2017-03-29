@@ -26,7 +26,7 @@ let paths = {
     './routes/**',
     './**/*.+(jpg|png|svg)'
   ]
-}
+};
 
 // -------------------------------------
 // Tasks
@@ -45,7 +45,9 @@ gulp.task('copy', function (done) {
     overwrite: true,
     matching: paths.copyFromAppDir
   }).then(function() {
-    return projectDir.copyAsync(srcDir.path('./app.js'), destDir.path('./app.js'))
+    return projectDir.copyAsync(srcDir.path('./app.js'), destDir.path('./app.js'));
+  }).then(function() {
+    return projectDir.copyAsync(srcDir.path('./polyonic.config.js'), destDir.path('./polyonic.config.js'));
   }).then(function() {
     done();
   })
@@ -118,7 +120,7 @@ gulp.task('build-electron', function(done) {
       appVersion: appVersion
     }, function (err, appPaths) {
       done(err);
-    })
+    });
   });
 });
 
