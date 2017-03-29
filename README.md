@@ -45,6 +45,12 @@ Once you're ready to test out your app in a contained build just run `gulp build
 
 # Changelog
 
+### 0.1.0
+
+Introducing the config file!
+
+You can now include a config file that will help prepare your desktop apps. This will be added on as the platform tools are built but for now it should cover the basics. 
+
 ### 0.5.0
 
 Reduced the binary size by ~100mb. No changes required on the developer's end. Polyonic will doesn't copy node_modules anymore but re-generates the package.json and installs only the required modules for release.
