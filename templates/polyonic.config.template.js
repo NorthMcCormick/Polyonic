@@ -1,5 +1,3 @@
+const fs = require('fs');
 
-
-module.exports = {
-
-};
+module.exports = fs.readJsonSync('polyonic.config.json');

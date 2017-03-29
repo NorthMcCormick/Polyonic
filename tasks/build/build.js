@@ -37,8 +37,8 @@ gulp.task('clean', function (done) {
     return jetpack.remove('output');
   }).then(function() {
     done();
-  })
-})
+  });
+});
 
 gulp.task('copy', function (done) {
   projectDir.copyAsync('src', destDir.path(), {
@@ -49,9 +49,11 @@ gulp.task('copy', function (done) {
   }).then(function() {
     return projectDir.copyAsync(srcDir.path('./polyonic.config.js'), destDir.path('./polyonic.config.js'));
   }).then(function() {
+    return projectDir.copyAsync(srcDir.path('./polyonic.config.json'), destDir.path('./polyonic.config.json'));
+  }).then(function() {
     done();
-  })
-})
+  });
+});
 
 gulp.task('finalize', function (done) {
   var rootPackage = projectDir.read('package.json', 'json');
@@ -99,11 +101,11 @@ gulp.task('installDeps', function(done) {
 gulp.task('watch', function () {
   watch('src/**/*.js', batch(function (events, done) {
     gulp.start('bundle-watch', done)
-  }))
+  }));
   watch(paths.copyFromAppDir, { cwd: 'app' }, batch(function (events, done) {
     gulp.start('copy-watch', done)
-  }))
-})
+  }));
+});
 
 gulp.task('build-electron', function(done) {
   var configXml = srcDir.read('./config.xml', 'utf8');
