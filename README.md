@@ -1,4 +1,4 @@
-# Polyonic v0.0.4
+# Polyonic v0.0.5
 
 ## The ultimate "Universal App"
 
@@ -43,11 +43,21 @@ The second piece to these projects is Electrolyte, my shim for Cordova plugins s
 
 Once you're ready to test out your app in a contained build just run `gulp build` and watch the magic happen. The build will create a binary for your current platform and architecture and place it in the `output` directory.
 
+# Changelog
+
+### 0.5.0
+
+Reduced the binary size by ~100mb. No changes required on the developer's end. Polyonic will doesn't copy node_modules anymore but re-generates the package.json and installs only the required modules for release.
+
+### 0.0.4
+
+This was the first public release so....
+
 # Credits
 
 This application was built using the <a href="https://github.com/szwacz/electron-boilerplate/blob/master/README.md">Electron Boilerplate Project</a> for scaffolding out the Electron application, the <a href="http://electron.atom.io/">Electron Framework</a> for creating desktop apps and <a href="http://ionicframework.com/">Ionic 2</a> for the UI and creating Native Mobile Applications, Progressive Mobile Web Applications and Web Applications. The original <a href="https://github.com/paulsutherland/Polyonic">polyonic</a> repo that helped kick start this.
 
-# Todo
+# Todo/Wishlist/Roadmap
 
 - Create a standardized CLI format for commands
 - Clean up some other Electron Boilerplate code that we don't need
