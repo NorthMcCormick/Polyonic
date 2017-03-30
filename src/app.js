@@ -31,15 +31,19 @@
 
         // Use Electron Connect when developing for live reloading, and show the devtools
     if (process.env.NODE_ENV === 'development') {
-      mainWindow.toggleDevTools();
+      mainWindow.openDevTools();
       client.create(mainWindow);
     };
+
+    if(config.debug.devTools) {
+      mainWindow.openDevTools();
+    }
   }
 
   let mainWindow = null;
 
   app.on('window-all-closed', function () {
-    if (process.platform !== 'darwin') {
+    if (process.platform !== 'darwin' || config.platform.macos.autoClose === true) {
       app.quit();
     }
   });
@@ -50,8 +54,10 @@
       webPreferences: {
         nodeIntegration: true
       },
-      width: 1200,
-      height: 900
+      width: config.windows.default.width,
+      height: config.windows.default.height,
+      fullscreen: config.windows.default.fullscreen,
+      resizable: config.windows.default.resizeable
     });
 
     expressApp.use(skipMap());
