@@ -1,0 +1,17 @@
+{
+  "windows": {
+    "default": {
+      "width": 1200,
+      "height": 900,
+      "fullscreen": false
+    }
+  },
+  "debug": {
+    "devTools": true
+  },
+  "platform": {
+    "macos": {
+      "autoClose": true
+    }
+  }
+}
