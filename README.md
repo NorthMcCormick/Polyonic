@@ -1,4 +1,4 @@
-# Polyonic v0.1.0
+# Polyonic v0.1.1
 
 ## The ultimate "Universal App"
 
@@ -86,6 +86,10 @@ Whether or not to archive the source to an asar or not. Default: true
 Whether to close the entire application if there are no more windows avialable. Default: false
 
 # Changelog
+
+### 0.1.1
+
+Fixing the build tools...
 
 ### 0.1.0
 
