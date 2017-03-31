@@ -75,6 +75,10 @@ Should the user be able to resize the window? Default: true
 
 Platform specific settings
 
+#### platform.asar
+
+Whether or not to archive the source to an asar or not. Default: true
+
 ### platform.macos
 
 #### platform.macos.autoClose
@@ -92,6 +96,8 @@ You can now include a config file that will help prepare your desktop apps. This
 ### 0.5.0
 
 Reduced the binary size by ~100mb. No changes required on the developer's end. Polyonic will doesn't copy node_modules anymore but re-generates the package.json and installs only the required modules for release.
+
+MacOS builds will now build with a custom icon.
 
 ### 0.0.4
 
