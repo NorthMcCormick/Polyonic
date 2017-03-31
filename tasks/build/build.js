@@ -20,6 +20,8 @@ const srcDir = projectDir.cwd('./src');
 const destDir = projectDir.cwd('./build');
 const binDir = projectDir.cwd('./test-darwin-x64');
 
+const config              = require(srcDir.path('./polyonic.config.js'));
+
 let paths = {
   copyFromAppDir: [
     './www/**',
@@ -31,6 +33,10 @@ let paths = {
 // -------------------------------------
 // Tasks
 // -------------------------------------
+
+gulp.task('testBuild', function() {
+  // Quickly validate that we didn't break anything here
+})
 
 gulp.task('clean', function (done) {
   destDir.dirAsync('.', { empty: true }).then(function() {
@@ -113,13 +119,22 @@ gulp.task('build-electron', function(done) {
   parseString(configXml, function (err, result) {
     var appVersion = result.widget.$.version;
 
+    var iconFile = null;
+
+    switch(process.platform) {
+      case 'darwin':
+        iconFile = projectDir.path('./resources/osx/icon.icns');
+      break;
+    }
+
     packager({
       dir: 'build',
-      asar: true,
+      asar: config.platform.asar,
       // todo: icon
       overwrite: true,
       out: 'output',
-      appVersion: appVersion
+      appVersion: appVersion,
+      icon: iconFile
     }, function (err, appPaths) {
       done(err);
     });

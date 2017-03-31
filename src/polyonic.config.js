@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 
-var config = fs.readJsonSync('polyonic.config.json');
+var config = fs.readJsonSync(__dirname + '/polyonic.config.json');
 
 // Do some cool config normalizing or something here
 
@@ -64,6 +64,10 @@ if(!checkNested(config, 'debug', 'devTools')) {
 
 if(!checkNested(config, 'platform')) {
   config.platform = {};
+}
+
+if(!checkNested(config, 'platform', 'asar')) {
+  config.platform.asar = true;
 }
 
 if(!checkNested(config, 'platform', 'macos')) {
