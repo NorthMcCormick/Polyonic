@@ -21,6 +21,13 @@ gulp.task('create', function () {
   }
 
   try {
+    fs.copySync('./templates/polyonic.config.template.json', './src/polyonic.config.json');
+  } catch(e) {
+    console.error('Could not copy the polyonic.config.json file. You may have to manually copy and rename templates/polyonic.config.template.json to src/polyonic.config.json');
+    console.error(e);
+  }
+
+  try {
     fs.copySync('./templates/gulpfile.template.js', './src/gulpfile.js');
   } catch(e) {
     console.error('Could not copy the gulpfile.js file. You may have to manually copy and rename templates/gulpfile.template.js to src/gulpfile.js');
