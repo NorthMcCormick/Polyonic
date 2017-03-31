@@ -43,11 +43,61 @@ The second piece to these projects is Electrolyte, my shim for Cordova plugins s
 
 Once you're ready to test out your app in a contained build just run `gulp build` and watch the magic happen. The build will create a binary for your current platform and architecture and place it in the `output` directory.
 
+# Polyonic Config
+
+When you create your project it will copy a config file (polyonic.config.json) as well. This is where you can modify and override settings for your project.
+
+## Browser Windows
+
+Configurations for each window in the application. (Currently only supports the default window)
+
+### windows.default
+
+The default window properties. 
+
+#### windows.default.width
+
+Window width in pixels. Default: 1200
+
+#### windows.default.height
+
+Window height in pixels. Default: 900
+
+#### windows.default.fullscreen
+
+Whether to start the window in full screen. Default: false
+
+#### windows.default.resizeable
+
+Should the user be able to resize the window? Default: true
+
+## Platforms
+
+Platform specific settings
+
+#### platform.asar
+
+Whether or not to archive the source to an asar or not. Default: true
+
+### platform.macos
+
+#### platform.macos.autoClose
+
+Whether to close the entire application if there are no more windows avialable. Default: false
+
 # Changelog
+
+### 0.1.0
+
+Introducing the config file!
+
+You can now include a config file that will help prepare your desktop apps. This will be added on as the platform tools are built but for now it should cover the basics. 
 
 ### 0.5.0
 
 Reduced the binary size by ~100mb. No changes required on the developer's end. Polyonic will doesn't copy node_modules anymore but re-generates the package.json and installs only the required modules for release.
+
+MacOS builds will now build with a custom icon.
 
 ### 0.0.4
 
@@ -65,6 +115,7 @@ This application was built using the <a href="https://github.com/szwacz/electron
 - More testing on other platforms. This is actively developed on MacOS
 - Find ways to make the binaries smaller
 - Expose the config variables to the Ionic app (or if Ionic does their own, work with that)
+- Create an upgrade tool or guide
 
 # Other, don't pay attention to this...
 
