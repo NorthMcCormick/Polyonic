@@ -4,6 +4,7 @@
   if(!window.isCordovaApp) {
     if(!window.cordova) {
       window.cordova = {};
+      window.cordova.plugins = {};
     }
 
     window.addEventListener('load', function() {

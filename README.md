@@ -1,4 +1,4 @@
-# Polyonic v0.1.1
+# Polyonic v0.2.0
 
 ## The ultimate "Universal App"
 
@@ -79,6 +79,10 @@ Platform specific settings
 
 Whether or not to archive the source to an asar or not. Default: true
 
+#### platform.copyright
+
+Text for your copyright notice inside the app. Default: ''
+
 ### platform.macos
 
 #### platform.macos.autoClose
@@ -86,6 +90,18 @@ Whether or not to archive the source to an asar or not. Default: true
 Whether to close the entire application if there are no more windows avialable. Default: false
 
 # Changelog
+
+### 0.2.0
+
+The build task now runs a very basic validation to check the project structure saving the developer a lot of time instead of waiting to know if something is wrong.
+
+Added the Electrolyte clipboard plugin shim. Yay clipboards! It also has the buttons to demo and test the clipboard with Ionic Native.
+
+You can now use --platform to select a platform to build. The build tools are a step closer to handling each platforms specific settings too. 
+
+The icons used for the build are now in `resources/icons`. 
+
+The name used in the build of the app now comes from the src's config.xml.
 
 ### 0.1.1
 
@@ -124,7 +140,6 @@ This application was built using the <a href="https://github.com/szwacz/electron
 - Find ways to make the binaries smaller
 - Expose the config variables to the Ionic app (or if Ionic does their own, work with that)
 - Create an upgrade tool or guide
-- Build config and structure validation tasks that run before the build to save time
 
 # Other, don't pay attention to this...
 

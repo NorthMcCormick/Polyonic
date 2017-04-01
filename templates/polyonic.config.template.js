@@ -69,6 +69,10 @@ if(!checkNested(config, 'platform', 'asar')) {
   config.platform.asar = true;
 }
 
+if(!checkNested(config, 'platform', 'copyright')) {
+  config.platform.copyright = '';
+}
+
 if(!checkNested(config, 'platform', 'macos')) {
   config.platform.macos = {};
 }

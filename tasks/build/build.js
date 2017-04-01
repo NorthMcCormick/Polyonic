@@ -10,6 +10,7 @@ const packager            = require('electron-packager');
 const parseString         = require('xml2js').parseString;
 const utils               = require('../utils');
 const exec                = require('child_process').exec;
+const argv                = require('yargs').argv;
 
 // -------------------------------------
 // Configure paths
@@ -18,7 +19,6 @@ const exec                = require('child_process').exec;
 const projectDir = jetpack;
 const srcDir = projectDir.cwd('./src');
 const destDir = projectDir.cwd('./build');
-const binDir = projectDir.cwd('./test-darwin-x64');
 
 let paths = {
   copyFromAppDir: [
@@ -32,8 +32,44 @@ let paths = {
 // Tasks
 // -------------------------------------
 
-gulp.task('testBuild', function() {
-  // Quickly validate that we didn't break anything here
+gulp.task('validate', function() {
+  console.log('Validating that the setup is correct and that the build tools are not broken...');
+
+  var isGood = true;
+
+  try {
+    var configXml = srcDir.read('./config.xml', 'utf8');
+
+    if(!configXml) {
+      throw 'Error: Could not find config.xml';
+    }
+
+  } catch(e) {
+    console.log('Can not access/find/read your config.xml. Is your Ionic project in the /src directory?');
+    console.error(e);
+
+    isGood = false;
+  }
+
+  try {
+    var config = require(srcDir.path('./polyonic.config.js'));
+
+    /*if(!config) {
+      throw 'Error: Could not find polyonic.config.js';
+    }*/
+
+  } catch(e) {
+    console.log('Could not access/find/read your polyonic.config.js. Do the config and json file exist in your Ionic project? (hint: Did you run `gulp create` yet?)');
+    console.error(e);
+    
+    isGood = false;
+  }
+
+  if(isGood) {
+    console.log('Project checks out!');
+  }else{
+    console.log('Project has one or more issues.');
+  }
 })
 
 gulp.task('clean', function (done) {
@@ -112,29 +148,98 @@ gulp.task('watch', function () {
 });
 
 gulp.task('build-electron', function(done) {
-  var configXml = srcDir.read('./config.xml', 'utf8');
+  var configXml           = srcDir.read('./config.xml', 'utf8');
   var config              = require(srcDir.path('./polyonic.config.js'));
 
   parseString(configXml, function (err, result) {
     var appVersion = result.widget.$.version;
+    var appName = result.widget.name[0];
 
     var iconFile = null;
+    var platform = argv.platform;
 
-    switch(process.platform) {
+    if(platform === undefined) {
+      platform = process.platform;
+    }
+
+    var buildForPlatform = platform;
+    var platformConfig = {};
+
+    function getMacOSConfig() {
+      //platformConfig.appBundleId
+      //platformConfig.appCategoryType
+      //platformConfig.extendInfo
+      //platformConfig.extraResource
+      //platformConfig.helperBundleId
+      //platformConfig.osxSign
+      //platformConfig.protocol
+      //platformConfig.protocolName
+      //platformConfig.protocolName
+
+      return {};
+    }
+
+    function getWindowsConfig() {
+      //platformConfig.win32metadata
+      //platformConfig.win32metadata.CompanyName
+      //platformConfig.win32metadata.FileDescription
+      //platformConfig.win32metadata.OriginalFilename
+      //platformConfig.win32metadata.ProductName
+      //platformConfig.win32metadata.InternalName
+
+      return {};
+    }
+
+    switch(platform) {
       case 'darwin':
-        iconFile = projectDir.path('./resources/osx/icon.icns');
+      case 'mac':
+      case 'osx':
+      case 'mas':
+      case 'macos':
+        buildForPlatform = 'darwin';
+
+        platformConfig = getMacOSConfig();
+      break;
+
+      case 'windows':
+      case 'win32':
+      case 'win':
+        buildForPlatform = 'win32';
+
+        platformConfig = getWindowsConfig();
+      break;
+
+      case 'linux':
+        buildForPlatform = 'linux';
+      break;
+
+      case 'all':
+        platformConfig = utils.extend({}, getMacOSConfig(), getWindowsConfig());
+        buildForPlatform = 'all';
+      break;
+
+      default:
+        buildForPlatform = undefined;
       break;
     }
 
-    packager({
+    var buildConfig = {
       dir: 'build',
       asar: config.platform.asar,
-      // todo: icon
       overwrite: true,
       out: 'output',
       appVersion: appVersion,
-      icon: iconFile
-    }, function (err, appPaths) {
+      icon: projectDir.path('./resources/icons/icon'),
+      platform: buildForPlatform,
+      overwrite: true,
+      appCopyright: config.platform.copyright,
+      name: appName
+      // buildVersion: 
+      // electronVersion
+      // name
+    };
+
+    packager(utils.extend({}, buildConfig, platformConfig), function (err, appPaths) {
       done(err);
     });
   });
@@ -162,6 +267,7 @@ gulp.task('build:www', function(done) {
 
 gulp.task('build', function(done) {
   runSequence(
+    'validate',
     ['clean', 'build-ionic'], 
     'copy', 
     'finalize', 

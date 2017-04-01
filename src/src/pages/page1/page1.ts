@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Device, AppVersion } from 'ionic-native';
+import { Device, AppVersion, Clipboard } from 'ionic-native';
 import { NavController, Platform } from 'ionic-angular';
 
 declare var window;
@@ -17,6 +17,9 @@ export class Page1 {
   public appName: any = '';
   public appPackageName: any = '';
   public appVersionCode: any = '';
+
+  public clipboardCopy: string = 'COPY ME';
+  public clipboardPaste: string = '';
 
   constructor(public navCtrl: NavController, public platform: Platform) {
     var pltReady = this.platform.ready(); 
@@ -68,4 +71,13 @@ export class Page1 {
     })
   }
 
+  copy() {
+    Clipboard.copy(this.clipboardCopy);
+  }
+
+  paste() {
+    Clipboard.paste().then((text) => {
+      this.clipboardPaste = text;
+    });
+  }
 }

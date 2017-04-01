@@ -1,7 +1,6 @@
-const fs = require('fs-extra');
+const fs = require('fs');
 
-var config = fs.readJsonSync(__dirname + '/polyonic.config.json');
-
+var config = JSON.parse(fs.readFileSync(__dirname + '/polyonic.config.json'));
 // Do some cool config normalizing or something here
 
 function checkNested(obj /*, level1, level2, ... levelN*/) {
@@ -68,6 +67,10 @@ if(!checkNested(config, 'platform')) {
 
 if(!checkNested(config, 'platform', 'asar')) {
   config.platform.asar = true;
+}
+
+if(!checkNested(config, 'platform', 'copyright')) {
+  config.platform.copyright = '';
 }
 
 if(!checkNested(config, 'platform', 'macos')) {
