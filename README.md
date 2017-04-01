@@ -91,6 +91,10 @@ Whether to close the entire application if there are no more windows avialable. 
 
 Fixing the build tools...
 
+You can now clone this repo and run these commands to get an executable for MacOS (other platforms not tested)
+
+`npm install && ionic start src --v2 && gulp create && gulp build`
+
 ### 0.1.0
 
 Introducing the config file!
