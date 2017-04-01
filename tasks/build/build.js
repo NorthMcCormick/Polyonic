@@ -193,8 +193,8 @@ gulp.task('build-electron', function(done) {
       case 'darwin':
       case 'mac':
       case 'osx':
+      case 'mas':
       case 'macos':
-        iconFile = projectDir.path('./resources/osx/icon.icns');
         buildForPlatform = 'darwin';
 
         platformConfig = getMacOSConfig();
@@ -203,14 +203,12 @@ gulp.task('build-electron', function(done) {
       case 'windows':
       case 'win32':
       case 'win':
-        iconFile = projectDir.path('./resources/windows/icon.ico');
         buildForPlatform = 'win32';
 
         platformConfig = getWindowsConfig();
       break;
 
       case 'linux':
-        iconFile = projectDir.path('./resources/icons/512x512.png');
         buildForPlatform = 'linux';
       break;
 
@@ -230,7 +228,7 @@ gulp.task('build-electron', function(done) {
       overwrite: true,
       out: 'output',
       appVersion: appVersion,
-      icon: iconFile,
+      icon: projectDir.path('./resources/icons/icon'),
       platform: buildForPlatform,
       overwrite: true
       // appCopyright: ''
