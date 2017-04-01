@@ -95,6 +95,8 @@ Added the Electrolyte clipboard plugin shim. Yay clipboards! It also has the but
 
 You can now use --platform to select a platform to build. The build tools are a step closer to handling each platforms specific settings too. 
 
+The icons used for the build are now in `resources/icons`. 
+
 ### 0.1.1
 
 Fixing the build tools...

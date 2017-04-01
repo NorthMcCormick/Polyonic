@@ -148,11 +148,12 @@ gulp.task('watch', function () {
 });
 
 gulp.task('build-electron', function(done) {
-  var configXml = srcDir.read('./config.xml', 'utf8');
+  var configXml           = srcDir.read('./config.xml', 'utf8');
   var config              = require(srcDir.path('./polyonic.config.js'));
 
   parseString(configXml, function (err, result) {
     var appVersion = result.widget.$.version;
+    var appName = result.widget.name[0];
 
     var iconFile = null;
     var platform = argv.platform;
@@ -230,10 +231,10 @@ gulp.task('build-electron', function(done) {
       appVersion: appVersion,
       icon: projectDir.path('./resources/icons/icon'),
       platform: buildForPlatform,
-      overwrite: true
-      // appCopyright: ''
-      // appVersion: ''
-      // buildVersion
+      overwrite: true,
+      appCopyright: config.platform.copyright,
+      name: appName
+      // buildVersion: 
       // electronVersion
       // name
     };
