@@ -20,8 +20,6 @@ const srcDir = projectDir.cwd('./src');
 const destDir = projectDir.cwd('./build');
 const binDir = projectDir.cwd('./test-darwin-x64');
 
-const config              = require(srcDir.path('./polyonic.config.js'));
-
 let paths = {
   copyFromAppDir: [
     './www/**',
@@ -115,6 +113,7 @@ gulp.task('watch', function () {
 
 gulp.task('build-electron', function(done) {
   var configXml = srcDir.read('./config.xml', 'utf8');
+  var config              = require(srcDir.path('./polyonic.config.js'));
 
   parseString(configXml, function (err, result) {
     var appVersion = result.widget.$.version;
