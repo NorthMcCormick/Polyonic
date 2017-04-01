@@ -32,8 +32,44 @@ let paths = {
 // Tasks
 // -------------------------------------
 
-gulp.task('testBuild', function() {
-  // Quickly validate that we didn't break anything here
+gulp.task('validate', function() {
+  console.log('Validating that the setup is correct and that the build tools are not broken...');
+
+  var isGood = true;
+
+  try {
+    var configXml = srcDir.read('./config.xml', 'utf8');
+
+    if(!configXml) {
+      throw 'Error: Could not find config.xml';
+    }
+
+  } catch(e) {
+    console.log('Can not access/find/read your config.xml. Is your Ionic project in the /src directory?');
+    console.error(e);
+
+    isGood = false;
+  }
+
+  try {
+    var config = require(srcDir.path('./polyonic.config.js'));
+
+    /*if(!config) {
+      throw 'Error: Could not find polyonic.config.js';
+    }*/
+
+  } catch(e) {
+    console.log('Could not access/find/read your polyonic.config.js. Do the config and json file exist in your Ionic project? (hint: Did you run `gulp create` yet?)');
+    console.error(e);
+    
+    isGood = false;
+  }
+
+  if(isGood) {
+    console.log('Project checks out!');
+  }else{
+    console.log('Project has one or more issues.');
+  }
 })
 
 gulp.task('clean', function (done) {
@@ -162,6 +198,7 @@ gulp.task('build:www', function(done) {
 
 gulp.task('build', function(done) {
   runSequence(
+    'validate',
     ['clean', 'build-ionic'], 
     'copy', 
     'finalize', 
