@@ -91,6 +91,8 @@ Whether to close the entire application if there are no more windows avialable. 
 
 The build task now runs a very basic validation to check the project structure saving the developer a lot of time instead of waiting to know if something is wrong.
 
+Added the Electrolyte clipboard plugin shim. Yay clipboards! It also has the buttons to demo and test the clipboard with Ionic Native.
+
 ### 0.1.1
 
 Fixing the build tools...
