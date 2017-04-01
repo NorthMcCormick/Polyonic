@@ -1,4 +1,4 @@
-# Polyonic v0.1.1
+# Polyonic v0.2.0
 
 ## The ultimate "Universal App"
 
@@ -87,6 +87,10 @@ Whether to close the entire application if there are no more windows avialable. 
 
 # Changelog
 
+### 0.2.0
+
+The build task now runs a very basic validation to check the project structure saving the developer a lot of time instead of waiting to know if something is wrong.
+
 ### 0.1.1
 
 Fixing the build tools...
@@ -124,7 +128,6 @@ This application was built using the <a href="https://github.com/szwacz/electron
 - Find ways to make the binaries smaller
 - Expose the config variables to the Ionic app (or if Ionic does their own, work with that)
 - Create an upgrade tool or guide
-- Build config and structure validation tasks that run before the build to save time
 
 # Other, don't pay attention to this...
 
