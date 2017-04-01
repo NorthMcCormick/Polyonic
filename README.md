@@ -79,6 +79,10 @@ Platform specific settings
 
 Whether or not to archive the source to an asar or not. Default: true
 
+#### platform.copyright
+
+Text for your copyright notice inside the app. Default: ''
+
 ### platform.macos
 
 #### platform.macos.autoClose
@@ -96,6 +100,8 @@ Added the Electrolyte clipboard plugin shim. Yay clipboards! It also has the but
 You can now use --platform to select a platform to build. The build tools are a step closer to handling each platforms specific settings too. 
 
 The icons used for the build are now in `resources/icons`. 
+
+The name used in the build of the app now comes from the src's config.xml.
 
 ### 0.1.1
 
