@@ -25,4 +25,10 @@
   App Name: <b>{{ appName }}</b><br/><br/>
   App Package Name: <b>{{ appPackageName }}</b><br/><br/>
   App Version Code: <b>{{ appVersionCode }}</b><br/><br/>
+
+  Copy Text: <b>{{ clipboardCopy }}</b><br/><br/>
+  Paste Text: <b>{{ clipboardPaste }}</b><br/><br/>
+
+  <button ion-button secondary (click)="copy()">Copy</button>
+  <button ion-button secondary (click)="paste()">Paste</button>
 </ion-content>
