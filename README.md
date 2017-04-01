@@ -120,6 +120,7 @@ This application was built using the <a href="https://github.com/szwacz/electron
 - Find ways to make the binaries smaller
 - Expose the config variables to the Ionic app (or if Ionic does their own, work with that)
 - Create an upgrade tool or guide
+- Build config and structure validation tasks that run before the build to save time
 
 # Other, don't pay attention to this...
 
