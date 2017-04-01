@@ -93,6 +93,8 @@ The build task now runs a very basic validation to check the project structure s
 
 Added the Electrolyte clipboard plugin shim. Yay clipboards! It also has the buttons to demo and test the clipboard with Ionic Native.
 
+You can now use --platform to select a platform to build. The build tools are a step closer to handling each platforms specific settings too. 
+
 ### 0.1.1
 
 Fixing the build tools...

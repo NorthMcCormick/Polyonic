@@ -10,6 +10,7 @@ const packager            = require('electron-packager');
 const parseString         = require('xml2js').parseString;
 const utils               = require('../utils');
 const exec                = require('child_process').exec;
+const argv                = require('yargs').argv;
 
 // -------------------------------------
 // Configure paths
@@ -18,7 +19,6 @@ const exec                = require('child_process').exec;
 const projectDir = jetpack;
 const srcDir = projectDir.cwd('./src');
 const destDir = projectDir.cwd('./build');
-const binDir = projectDir.cwd('./test-darwin-x64');
 
 let paths = {
   copyFromAppDir: [
@@ -155,22 +155,92 @@ gulp.task('build-electron', function(done) {
     var appVersion = result.widget.$.version;
 
     var iconFile = null;
+    var platform = argv.platform;
 
-    switch(process.platform) {
+    if(platform === undefined) {
+      platform = process.platform;
+    }
+
+    var buildForPlatform = platform;
+    var platformConfig = {};
+
+    function getMacOSConfig() {
+      //platformConfig.appBundleId
+      //platformConfig.appCategoryType
+      //platformConfig.extendInfo
+      //platformConfig.extraResource
+      //platformConfig.helperBundleId
+      //platformConfig.osxSign
+      //platformConfig.protocol
+      //platformConfig.protocolName
+      //platformConfig.protocolName
+
+      return {};
+    }
+
+    function getWindowsConfig() {
+      //platformConfig.win32metadata
+      //platformConfig.win32metadata.CompanyName
+      //platformConfig.win32metadata.FileDescription
+      //platformConfig.win32metadata.OriginalFilename
+      //platformConfig.win32metadata.ProductName
+      //platformConfig.win32metadata.InternalName
+
+      return {};
+    }
+
+    switch(platform) {
       case 'darwin':
+      case 'mac':
+      case 'osx':
+      case 'macos':
         iconFile = projectDir.path('./resources/osx/icon.icns');
+        buildForPlatform = 'darwin';
+
+        platformConfig = getMacOSConfig();
+      break;
+
+      case 'windows':
+      case 'win32':
+      case 'win':
+        iconFile = projectDir.path('./resources/windows/icon.ico');
+        buildForPlatform = 'win32';
+
+        platformConfig = getWindowsConfig();
+      break;
+
+      case 'linux':
+        iconFile = projectDir.path('./resources/icons/512x512.png');
+        buildForPlatform = 'linux';
+      break;
+
+      case 'all':
+        platformConfig = utils.extend({}, getMacOSConfig(), getWindowsConfig());
+        buildForPlatform = 'all';
+      break;
+
+      default:
+        buildForPlatform = undefined;
       break;
     }
 
-    packager({
+    var buildConfig = {
       dir: 'build',
       asar: config.platform.asar,
-      // todo: icon
       overwrite: true,
       out: 'output',
       appVersion: appVersion,
-      icon: iconFile
-    }, function (err, appPaths) {
+      icon: iconFile,
+      platform: buildForPlatform,
+      overwrite: true
+      // appCopyright: ''
+      // appVersion: ''
+      // buildVersion
+      // electronVersion
+      // name
+    };
+
+    packager(utils.extend({}, buildConfig, platformConfig), function (err, appPaths) {
       done(err);
     });
   });
