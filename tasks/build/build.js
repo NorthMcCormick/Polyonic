@@ -131,11 +131,13 @@ gulp.task('finalize', function (done) {
 });
 
 gulp.task('installDeps', function(done) {
-  exec('cd build && npm install', function(error, stdout, stderr) {
+  var runner = exec('cd build && npm install', function(error, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
     done(error);
   });
+
+  runner.stdout.pipe(process.stdout);
 })
 
 gulp.task('watch', function () {
@@ -246,11 +248,13 @@ gulp.task('build-electron', function(done) {
 });
 
 gulp.task('build-ionic', function(done) {
-  exec('cd src && npm run build', function (error, stdout, stderr) {
+  var runner = exec('cd src && npm run build', function (error, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
     done(error);
   });
+
+  runner.stdout.pipe(process.stdout);
 });
 
 // -------------------------------------

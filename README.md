@@ -55,7 +55,7 @@ If you want to build your source into the `build` directory but not build any pl
 
 `gulp run` will start electron and the live-reload on the app. This is what you use for most of your development and electron testing.
 
-`gulp run --live=false` will start electron without live-reload, and using whatever code is in the `build` directory.
+`gulp run --prod` will start electron without live-reload, and using whatever code is in the `build` directory.
 
 # Polyonic Config
 

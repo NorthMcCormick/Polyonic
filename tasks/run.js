@@ -6,7 +6,7 @@ const gulp                = require('gulp');
 const argv                = require('yargs').argv;
 
 gulp.task('run', function(error) {
-  if(argv.live === false) {
+  if(argv.prod !== undefined) {
     console.log('Starting app from "build" without live-reload...')
     childProcess.spawn(electron, ['./build'], {
       stdio: 'inherit'
