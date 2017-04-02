@@ -1,4 +1,4 @@
-# Polyonic v0.2.0
+# Polyonic v0.3.0
 
 ## The ultimate "Universal App"
 
@@ -29,11 +29,23 @@ Here's what it looks like side by side with your app in Cordova:
 
 The second piece to these projects is Electrolyte, my shim for Cordova plugins so that the native features available on desktop and mobile can work with minimal changes (if any) to your codebase. 
 
-# Getting Started
+# Getting Started (New Project)
 
 1) Clone this repo
 
-2) Overwrite the contents of the 'src' directory with the contents in the root directory of your ionic app
+2) Run `npm install`
+
+4) Run `npm quickstart`
+
+# Getting Started (Existing Project)
+
+1) Clone this repo
+
+2) Run `npm install`
+
+3) Overwrite the contents of the 'src' directory with the contents in the root directory of your ionic app
+
+4) Run `npm install` inside the 'src' directory to get your Ionic project node modules if you did not copy them
 
 3) Run `gulp init` to copy the new build tools in and modify your package.json for electron
 
@@ -109,7 +121,7 @@ Whether to close the entire application if there are no more windows avialable. 
 
 Cleaning up the tooling. No more need to rely on the npm commands but you can now use `gulp <task>` for everything. (Read the docs to see what to use now)
 
-
+You can now use `gulp quickstart` to start up a brand new project using the latest Ionic 2.x.
 
 ### 0.2.0
 

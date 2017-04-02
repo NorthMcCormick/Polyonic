@@ -34,6 +34,7 @@
     "gulp-watch": "4.3.11",
     "inquirer": "^3.0.6",
     "morgan": "1.7.0",
+    "node-emoji": "^1.5.1",
     "q": "1.4.1",
     "run-sequence": "^1.2.2",
     "snazzy": "*",
