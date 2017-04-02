@@ -1,4 +1,4 @@
-# Polyonic v0.2.0
+# Polyonic v0.3.0
 
 ## The ultimate "Universal App"
 
@@ -29,19 +29,45 @@ Here's what it looks like side by side with your app in Cordova:
 
 The second piece to these projects is Electrolyte, my shim for Cordova plugins so that the native features available on desktop and mobile can work with minimal changes (if any) to your codebase. 
 
-# Getting Started
+# Getting Started (New Project)
 
 1) Clone this repo
 
-2) Overwrite the contents of the 'src' directory with the contents in the root directory of your ionic app
+2) Run `npm install`
 
-3) Run `npm run create` to copy the new build tools in and modify your package.json for electron
+4) Run `npm quickstart`
 
-4) Run `npm run dev` to boot up your ionic app, the electron app, and start the live reload
+# Getting Started (Existing Project)
+
+1) Clone this repo
+
+2) Run `npm install`
+
+3) Overwrite the contents of the 'src' directory with the contents in the root directory of your ionic app
+
+4) Run `npm install` inside the 'src' directory to get your Ionic project node modules if you did not copy them
+
+3) Run `gulp init` to copy the new build tools in and modify your package.json for electron
+
+4) Run `gulp run` to boot up your ionic app, the electron app, and start the live reload
 
 # Building
 
 Once you're ready to test out your app in a contained build just run `gulp build` and watch the magic happen. The build will create a binary for your current platform and architecture and place it in the `output` directory.
+
+### Options
+
+`--platform` - Select a platform to build for (`macos`, `windows`, `linux`, or `all`)
+
+### Only building the code
+
+If you want to build your source into the `build` directory but not build any platforms, you can run `gulp build:www`
+
+# Running
+
+`gulp run` will start electron and the live-reload on the app. This is what you use for most of your development and electron testing.
+
+`gulp run --prod` will start electron without live-reload, and using whatever code is in the `build` directory.
 
 # Polyonic Config
 
@@ -91,6 +117,12 @@ Whether to close the entire application if there are no more windows avialable. 
 
 # Changelog
 
+### 0.3.0
+
+Cleaning up the tooling. No more need to rely on the npm commands but you can now use `gulp <task>` for everything. (Read the docs to see what to use now)
+
+You can now use `gulp quickstart` to start up a brand new project using the latest Ionic 2.x.
+
 ### 0.2.0
 
 The build task now runs a very basic validation to check the project structure saving the developer a lot of time instead of waiting to know if something is wrong.
@@ -109,7 +141,7 @@ Fixing the build tools...
 
 You can now clone this repo and run these commands to get an executable for MacOS (other platforms not tested)
 
-`npm install && ionic start src --v2 && gulp create && gulp build`
+`npm install && ionic start src --v2 && gulp init && gulp build`
 
 ### 0.1.0
 
@@ -133,8 +165,6 @@ This application was built using the <a href="https://github.com/szwacz/electron
 
 # Todo/Wishlist/Roadmap
 
-- Create a standardized CLI format for commands
-- Clean up some other Electron Boilerplate code that we don't need
 - Beef up the build process to configure the binaries for each platform with a universal set of settings
 - More testing on other platforms. This is actively developed on MacOS
 - Find ways to make the binaries smaller
