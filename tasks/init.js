@@ -3,8 +3,8 @@
 const gulp = require('gulp')
 const fs = require('fs-extra')
 
-gulp.task('create', function () {
-  console.log('Creating new project');
+gulp.task('init', function () {
+  console.log('Initializing your project');
 
   try {
     fs.copySync('./templates/app.template.js', './src/app.js');

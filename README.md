@@ -35,13 +35,27 @@ The second piece to these projects is Electrolyte, my shim for Cordova plugins s
 
 2) Overwrite the contents of the 'src' directory with the contents in the root directory of your ionic app
 
-3) Run `npm run create` to copy the new build tools in and modify your package.json for electron
+3) Run `gulp init` to copy the new build tools in and modify your package.json for electron
 
-4) Run `npm run dev` to boot up your ionic app, the electron app, and start the live reload
+4) Run `gulp run` to boot up your ionic app, the electron app, and start the live reload
 
 # Building
 
 Once you're ready to test out your app in a contained build just run `gulp build` and watch the magic happen. The build will create a binary for your current platform and architecture and place it in the `output` directory.
+
+### Options
+
+`--platform` - Select a platform to build for (`macos`, `windows`, `linux`, or `all`)
+
+### Only building the code
+
+If you want to build your source into the `build` directory but not build any platforms, you can run `gulp build:www`
+
+# Running
+
+`gulp run` will start electron and the live-reload on the app. This is what you use for most of your development and electron testing.
+
+`gulp run --live=false` will start electron without live-reload, and using whatever code is in the `build` directory.
 
 # Polyonic Config
 
