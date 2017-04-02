@@ -105,6 +105,10 @@ Whether to close the entire application if there are no more windows avialable. 
 
 # Changelog
 
+### 0.3.0
+
+Cleaning up the tooling. No more need to rely on the npm commands but you can now use `gulp <task>` for everything. (Read the docs to see what to use now)
+
 ### 0.2.0
 
 The build task now runs a very basic validation to check the project structure saving the developer a lot of time instead of waiting to know if something is wrong.
@@ -123,7 +127,7 @@ Fixing the build tools...
 
 You can now clone this repo and run these commands to get an executable for MacOS (other platforms not tested)
 
-`npm install && ionic start src --v2 && gulp create && gulp build`
+`npm install && ionic start src --v2 && gulp init && gulp build`
 
 ### 0.1.0
 
