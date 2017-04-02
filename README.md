@@ -109,6 +109,8 @@ Whether to close the entire application if there are no more windows avialable. 
 
 Cleaning up the tooling. No more need to rely on the npm commands but you can now use `gulp <task>` for everything. (Read the docs to see what to use now)
 
+
+
 ### 0.2.0
 
 The build task now runs a very basic validation to check the project structure saving the developer a lot of time instead of waiting to know if something is wrong.
@@ -151,8 +153,6 @@ This application was built using the <a href="https://github.com/szwacz/electron
 
 # Todo/Wishlist/Roadmap
 
-- Create a standardized CLI format for commands
-- Clean up some other Electron Boilerplate code that we don't need
 - Beef up the build process to configure the binaries for each platform with a universal set of settings
 - More testing on other platforms. This is actively developed on MacOS
 - Find ways to make the binaries smaller
